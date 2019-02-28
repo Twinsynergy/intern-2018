@@ -1,0 +1,12 @@
+version: '2.4'
+services: 
+  db:
+    image: mariadb:10.1
+    environment:
+      MYSQL_ROOT_PASSWORD: 1122334455ab
+      MYSQL_DATABASE: hrdb
+    volumes: 
+      - db-data:/var/lib/mysql
+
+volumes: 
+  db-data:
