@@ -7,7 +7,7 @@ services:
       MYSQL_DATABASE: hrdb
     volumes: 
       - db-data:/var/lib/mysql
-  phpmyadmin:
+  pma:
     image: nazarpc/phpmyadmin
     ports:
       - 8080:80
