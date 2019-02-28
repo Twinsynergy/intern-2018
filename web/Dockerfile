@@ -2,14 +2,13 @@ FROM node:10-alpine as builder
 RUN apk add --update alpine-sdk python python-dev py-pip build-base
 WORKDIR /app
 COPY ./package*.json ./
-RUN npm install -g node-gyp && yarn install 
+RUN yarn install 
 COPY ./ ./
-RUN yarn build-dev
+RUN yarn build
 
 FROM nginx:1.13-alpine
 LABEL name="Backoffice" \
     version="1.0.0" \
-    env=$arg_env \
     org.label-schema.url="http://178.128.80.240" \
     org.label-schema.vcs-url="https://github.com/Twinsynergy/intern-2018" \
     org.label-schema.vendor="Twin Synergy"
