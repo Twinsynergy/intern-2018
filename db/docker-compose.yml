@@ -7,6 +7,13 @@ services:
       MYSQL_DATABASE: hrdb
     volumes: 
       - db-data:/var/lib/mysql
+  phpmyadmin:
+    image: nazarpc/phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      MYSQL_HOST: db
+      UPLOAD_SIZE: 1G
 
 volumes: 
   db-data:
