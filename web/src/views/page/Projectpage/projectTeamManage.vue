@@ -14,13 +14,18 @@
       </ol>
     </div>
     <br>
-    <el-row :gutter="20">
-      <el-col :span="16">
+    <div class="row">
+      <div class="col-sm-12">
         <div class="alert alert-light">
           <v-card-title primary>
-            <h3>จัดการ Sprints ของทีม {{projectData.project_team_name}}</h3>
+            <h3>สมาชิกในทีม {{projectData.project_team_name}} ของโปรเจค {{projectData.project_name}}</h3>
             <v-spacer></v-spacer>
-            <div></div>
+            <div>
+              <v-btn small fab outline color="blue" @click="addButton();">
+                <v-icon>add</v-icon>
+              </v-btn>
+              <span class="text-sm">เพิ่ม</span>
+            </div>
           </v-card-title>
           <br>
           <v-data-table
@@ -47,10 +52,9 @@
               </td>
               <td v-else class="text-xs-left">
                 <v-icon>date_range</v-icon>
-
                 {{props.item.emp_start_date | moment("DD MMMM YYYY")}} - {{props.item.emp_end_date | moment("DD MMMM YYYY")}}
               </td>
-              <td >
+              <td>
                 <v-chip
                   color="primary"
                   text-color="white"
@@ -92,9 +96,9 @@
             </template>
           </v-data-table>
         </div>
-      </el-col>
+      </div>
 
-      <el-col :span="8">
+      <!-- <div class="col-sm-4">
         <div class="alert alert-light">
           <v-card-title primary>
             <h3>ตำแหน่งทั้งหมด</h3>
@@ -104,7 +108,7 @@
           <div class="container-fluid">
             <v-data-table hide-headers hide-actions :items="desserts">
               <template slot="items" slot-scope="props">
-                <!-- <td class="text-xs-center">{{ props.index+1 }}</td> -->
+
                 <td class="text-xs-left" width="400">
                   <v-icon>business_center</v-icon>
                   ตำแหน่ง {{ props.item.position_name }}
@@ -132,8 +136,8 @@
             </v-data-table>
           </div>
         </div>
-      </el-col>
-    </el-row>
+      </div>-->
+    </div>
   </div>
 </template>
 
@@ -197,7 +201,7 @@ export default {
           align: "center",
           sortable: false
         },
-  {
+        {
           text: "",
 
           align: "center",
@@ -214,6 +218,12 @@ export default {
     };
   },
   methods: {
+    addButton: function() {
+      this.$router.push({
+        name: "projectEmpAdd",
+        params: { projectID: this.$route.params.projectID }
+      });
+    },
     back: function() {
       this.$router.push("/project/detail/" + this.$route.params.projectID);
     },

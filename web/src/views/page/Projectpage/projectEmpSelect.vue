@@ -22,7 +22,7 @@
       <v-card-title primary>
         <h1>พนักงานทั้งหมดของตำแหน่ง {{position.position_name}}</h1>
         <v-spacer></v-spacer>
-        <div>
+        <!-- <div>
           <div>
             <v-btn
               color="primary"
@@ -36,24 +36,25 @@
             </v-btn>
             <span class="text-sm">บันทึก</span>
           </div>
-        </div>
+        </div> -->
       </v-card-title>
 
-      <hr>
-
       <div class="container">
-<div v-if="empData.length == 0 "><h3>ไม่มีพนักงานในตำแหน่งนี้</h3></div>
-<div v-else ><h3>เลือกพนักงาน</h3></div>
+        <div v-if="empData.length == 0 ">
+          <h3>{{nodata}}</h3>
+        </div>
+        <div v-else>
+          <h3>เลือกพนักงาน</h3>
+        </div>
 
-        
         <br>
-        
+
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="demo-ruleForm text-xs-left">
           <el-form-item prop="pushdataarray">
             <el-checkbox-group v-model="ruleForm.pushdataarray">
               <span style="margin-top: 20px" v-for="item in empData " :key="item.id">
                 <el-checkbox-button border :label="item.emp_id" style="margin-right: 20px; ">
-                  <h1>
+                  <h1 class="text-xs-center">
                     <v-icon>face</v-icon>
                   </h1>
                   <h4>{{item.emp_nickname}}</h4>
@@ -69,6 +70,14 @@
               </span>
             </el-checkbox-group>
           </el-form-item>
+          <div>
+            <div class="text-xs-right">
+              <br>
+              <v-btn color="primary" round outline dark @click="submitForm('ruleForm'),ruleForm.position_id = position.id">
+                <span>บันทึก</span>
+              </v-btn>
+            </div>
+          </div>
         </el-form>
       </div>
 
@@ -140,7 +149,8 @@ export default {
           headers: { Authorization: `${localStorage.tokenkey}` }
         })
         .then(response => {
-          (this.empData = response.data.data), (this.nodata = "ไม่พบพนักงาน");
+          (this.empData = response.data.data),
+            (this.nodata = "ไม่มีพนักงานในตำแหน่งนี้");
         })
         .catch(err => {
           console.log(err);

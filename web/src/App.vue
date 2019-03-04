@@ -2,7 +2,7 @@
   <v-app>
     <transition name="fade" mode="out-in">
       <div v-if="$store.state.getApiData.tokenkey">
-        <el-container class="circular" :style="{ backgroundImage: 'url(' + image + ')' }">
+        <!-- <el-container class="circular" :style="{ backgroundImage: 'url(' + image + ')' }">
           <el-aside width="300px">
             <MenuLeft/>
           </el-aside>
@@ -21,7 +21,35 @@
               </div>
             </el-main>
           </el-container>
-        </el-container>
+        </el-container>-->
+        <v-app>
+          <v-navigation-drawer fixed v-model="drawer" clipped app>
+            <MenuLeft/>
+          </v-navigation-drawer>
+          <v-toolbar color="#2ac3fe" dark fixed app clipped-left>
+            <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+            <span class="navbar-brand">
+              <!-- <img src="./assets/logo3.png" width="30" height="30" class="d-inline-block align-top" alt=""> -->
+              <b>
+                ระบบจัดการข้อมูล
+                บริษัททวินซินเนอร์จี้
+              </b>
+            </span>
+            <v-spacer></v-spacer>
+            <NavBar/>
+          </v-toolbar>
+
+          <v-content>
+            <v-container fluid>
+              <div class="container-fluid">
+                <br>
+                <transition name="fade" mode="out-in">
+                  <router-view/>
+                </transition>
+              </div>
+            </v-container>
+          </v-content>
+        </v-app>
       </div>
 
       <div v-else>
@@ -84,6 +112,10 @@ export default {
   name: "App",
   data() {
     return {
+      drawer: true,
+      drawerRight: true,
+      right: null,
+      left: null,
       notlogin: true,
       image: "",
       ruleForm: {
@@ -114,22 +146,12 @@ export default {
     if (localStorage.tokenkey)
       this.$store.state.getApiData.tokenkey = localStorage.tokenkey;
     this.getusername();
+    this.getname();
+    this.getid();
     this.getstatus();
   },
 
   methods: {
-    // AutoLoguot() {
-    //   setTimeout(() => {
-    //     localStorage.clear();
-    //     Swal.fire({
-    //       type: "warning",
-    //       title: "เซสชั่นหมดอายุแล้ว",
-    //       text: "กรุณาเข้าสู่ระบบใหม่",
-    //       showConfirmButton: true
-    //     });
-    //     this.$store.state.getApiData.tokenkey = null;
-    //   }, 3600000);
-    // },
     getTokenKey: function() {
       if (localStorage.tokenkey)
         this.$store.state.getApiData.tokenkey = localStorage.tokenkey;
@@ -137,6 +159,13 @@ export default {
     getusername: function() {
       if (localStorage.username)
         this.$store.state.getApiData.username = localStorage.username;
+    },
+    getname: function() {
+      if (localStorage.name)
+        this.$store.state.getApiData.name = localStorage.name;
+    },
+    getid: function() {
+      if (localStorage.id) this.$store.state.getApiData.id = localStorage.id;
     },
     getstatus: function() {
       if (localStorage.status)
@@ -150,8 +179,11 @@ export default {
         .then(response => {
           console.log(response);
           localStorage.tokenkey = "Bearer " + response.data.token;
+          localStorage.id = response.data.id;
           localStorage.username = response.data.username;
+          localStorage.name = response.data.name;
           localStorage.status = response.data.status;
+
           {
             Swal.fire({
               title: "เข้าสู่ระบบเรียบร้อย",
@@ -162,6 +194,8 @@ export default {
               console.log("ok3");
               this.getTokenKey();
               this.getusername();
+              this.getname();
+              this.getid();
               this.getstatus();
             });
           }
@@ -170,7 +204,7 @@ export default {
           console.log(err.response.data);
           console.log(err.response.status);
           console.log(err.response.headers);
-          if (err.response.status == 404 | err.response.status == 400) {
+          if ((err.response.status == 404) | (err.response.status == 400)) {
             Swal.fire({
               type: "error",
               title: "ชื่อผู้ใช้ หรือ รหัสผ่านไม่ถูกต้อง",

@@ -14,14 +14,6 @@
       <v-card-title primary>
         <h1>เพิ่มข้อมูลใหม่</h1>
         <v-spacer></v-spacer>
-        <div>
-          <div>
-            <v-btn color="primary" fab small outline dark @click="submitForm('ruleForm')">
-              <v-icon>save</v-icon>
-            </v-btn>
-            <span class="text-sm">บันทึก</span>
-          </div>
-        </div>
       </v-card-title>
       <div class="container">
         <el-form
@@ -38,6 +30,14 @@
           <el-form-item label="ตำแหน่งที่ตั้ง" prop="branch_address">
             <el-input type="textarea" v-model="ruleForm.branch_address"></el-input>
           </el-form-item>
+          <div>
+            <div class="text-xs-right">
+              <br>
+              <v-btn color="primary" round outline dark @click="submitForm('ruleForm')">
+                <span>บันทึก</span>
+              </v-btn>
+            </div>
+          </div>
         </el-form>
       </div>
     </div>

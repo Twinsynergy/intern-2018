@@ -7,6 +7,8 @@ export default new Vuex.Store({
   state: {
     getApiData: {
       tokenkey: "",
+      name: "",
+      id: "",
       username: "",
       status: ""
     }

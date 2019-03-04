@@ -26,30 +26,6 @@
       <v-card-title primary>
         <h1>ระยะเวลาดำเนินการของ {{teamData.emp_id.emp_name}}</h1>
         <v-spacer></v-spacer>
-        <div>
-          <div>
-            <div v-if="teamData.emp_start_date === 0">
-              <v-btn
-                color="primary"
-                fab
-                small
-                dark
-                outline
-                @click="submitForm('teamData'),(teamData.emp_start_date = form.emp_start_date,teamData.emp_end_date = form.emp_end_date)"
-              >
-                <v-icon>save</v-icon>
-              </v-btn>
-              <span class="text-sm">บันทึก</span>
-            </div>
-
-            <div v-else>
-              <v-btn color="primary" fab small dark outline @click="submitForm('teamData')">
-                <v-icon>save</v-icon>
-              </v-btn>
-              <span class="text-sm">บันทึก</span>
-            </div>
-          </div>
-        </div>
       </v-card-title>
 
       <div v-if="teamData.emp_start_date === 0" class="container">
@@ -82,6 +58,20 @@
             ></el-date-picker>
           </el-form-item>
         </el-form>
+
+
+
+
+
+            <div>
+              <div class="text-xs-right">
+                <br>
+                <v-btn color="primary" round outline dark @click="submitForm('teamData'),(teamData.emp_start_date = form.emp_start_date,teamData.emp_end_date = form.emp_end_date)">
+                  <span>บันทึก</span>
+                </v-btn>
+              </div>
+            </div>
+
       </div>
 
       <div v-else class="container">
@@ -113,6 +103,14 @@
               style="width: 100%;"
             ></el-date-picker>
           </el-form-item>
+                      <div>
+              <div class="text-xs-right">
+                <br>
+                <v-btn color="primary" round outline dark @click="submitForm('teamData')">
+                  <span>บันทึก</span>
+                </v-btn>
+              </div>
+            </div>
         </el-form>
       </div>
     </div>

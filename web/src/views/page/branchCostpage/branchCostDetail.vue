@@ -38,10 +38,10 @@
               <span class="text-sm">แก้ไข</span>
             </div>
             <div v-if="!editBtnSeen">
-              <v-btn color="green" fab small dark outline @click="submitForm('ruleForm')">
+              <!-- <v-btn color="green" fab small dark outline @click="submitForm('ruleForm')">
                 <v-icon>save</v-icon>
               </v-btn>
-              <span class="text-sm">บันทึก</span>
+              <span class="text-sm">บันทึก</span>-->
               <v-btn color="red" fab small dark outline @click="cancelForm();">
                 <v-icon>clear</v-icon>
               </v-btn>
@@ -98,6 +98,14 @@
           <el-form-item label="หมายเหตุ :" prop="fixcost_note">
             <el-input type="textarea" v-model="ruleForm.fixcost_note"></el-input>
           </el-form-item>
+          <div v-if="!editBtnSeen">
+            <div class="text-xs-right">
+              <br>
+              <v-btn color="primary" round outline dark @click="submitForm('ruleForm')">
+                <span>บันทึก</span>
+              </v-btn>
+            </div>
+          </div>
         </el-form>
       </div>
     </div>
@@ -151,35 +159,38 @@ export default {
       let getID = this.$route.params.CostID;
       let view = "/view";
       axios
-        .get(apiURL + getID + view,{ headers: { Authorization: `${localStorage.tokenkey}` } })
+        .get(apiURL + getID + view, {
+          headers: { Authorization: `${localStorage.tokenkey}` }
+        })
         .then(
           response => (
             (this.branchData = response.data.data),
             (this.name = response.data.data.fixcost_branch_id)
           )
-        )
-         ;
+        );
     },
     saveData: function() {
       let apiURL = "http://35.198.219.154:1337/fixcost/update";
       this.axios
-        .post(apiURL, this.ruleForm,{ headers: { Authorization: `${localStorage.tokenkey}` } })
+        .post(apiURL, this.ruleForm, {
+          headers: { Authorization: `${localStorage.tokenkey}` }
+        })
         .then(response => {
           console.log("ok2");
           Swal.fire({
-                title: "บันทึกข้อมูลเรียบร้อย",
-                type: "success",
-                showConfirmButton: false,
-                timer: 1500
-              }).then(result => {
-                console.log("ok3");
-                // this.$router.push("/branch");
-                this.$router.go(-1);
-              });
+            title: "บันทึกข้อมูลเรียบร้อย",
+            type: "success",
+            showConfirmButton: false,
+            timer: 1500
+          }).then(result => {
+            console.log("ok3");
+            // this.$router.push("/branch");
+            this.$router.go(-1);
+          });
         })
         .catch(err => {
           console.log(err);
-           Swal.fire({
+          Swal.fire({
             type: "error",
             title: "เกิดข้อผิดพลาด",
             showConfirmButton: false,
@@ -199,7 +210,6 @@ export default {
             confirmButtonText: "บันทึก"
           }).then(result => {
             if (result.value) {
-              
               console.log("ok1");
               this.saveData();
             }

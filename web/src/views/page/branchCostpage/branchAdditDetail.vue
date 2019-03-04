@@ -38,10 +38,10 @@
               <span class="text-sm">แก้ไข</span>
             </div>
             <div v-if="!editBtnSeen">
-              <v-btn color="green" fab small dark outline @click="submitForm('ruleForm')">
+              <!-- <v-btn color="green" fab small dark outline @click="submitForm('ruleForm')">
                 <v-icon>save</v-icon>
               </v-btn>
-              <span class="text-sm">บันทึก</span>
+              <span class="text-sm">บันทึก</span>-->
               <v-btn color="red" fab small dark outline @click="cancelForm();">
                 <v-icon>clear</v-icon>
               </v-btn>
@@ -110,6 +110,14 @@
               ></el-date-picker>
             </el-form-item>
           </el-form-item>
+          <div v-if="!editBtnSeen">
+            <div class="text-xs-right">
+              <br>
+              <v-btn color="primary" round outline dark @click="submitForm('ruleForm')">
+                <span>บันทึก</span>
+              </v-btn>
+            </div>
+          </div>
         </el-form>
       </div>
     </div>
@@ -175,7 +183,7 @@ export default {
             (this.branchData = response.data.data),
             (this.name = response.data.data.branch_addit_branch_id)
           )
-        ) ;
+        );
     },
     saveData: function() {
       let apiURL = "http://35.198.219.154:1337/branchaddit/update";

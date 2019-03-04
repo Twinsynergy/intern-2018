@@ -19,7 +19,7 @@
       <v-card-title primary>
         <h1>เพิ่มข้อมูลค่าใช้จ่าย</h1>
         <v-spacer></v-spacer>
-        <div>
+        <!-- <div>
           <div>
             <v-btn
               color="primary"
@@ -33,7 +33,7 @@
             </v-btn>
             <span class="text-sm">บันทึก</span>
           </div>
-        </div>
+        </div> -->
       </v-card-title>
       <div class="container">
         <el-form
@@ -54,6 +54,20 @@
           <el-form-item label="หมายเหตุ" prop="fixcost_note">
             <el-input type="textarea" v-model="ruleForm.fixcost_note"></el-input>
           </el-form-item>
+          <div>
+            <div class="text-xs-right">
+              <br>
+              <v-btn
+                color="primary"
+                round
+                outline
+                dark
+                @click="submitForm('ruleForm'),ruleForm.fixcost_branch_id = $route.params.branchID"
+              >
+                <span>บันทึก</span>
+              </v-btn>
+            </div>
+          </div>
         </el-form>
       </div>
     </div>
@@ -63,12 +77,12 @@
 <script>
 import axios from "axios";
 export default {
-   mounted() {
+  mounted() {
     this.getAllData();
   },
   data() {
     return {
-      branchData:"",
+      branchData: "",
       ruleForm: {
         fixcost_title: "",
         fixcost_price: "",
@@ -98,7 +112,9 @@ export default {
       let getID = this.$route.params.branchID;
       let view = "/view";
       axios
-        .get(apiURL + getID + view,{ headers: { Authorization: `${localStorage.tokenkey}` } })
+        .get(apiURL + getID + view, {
+          headers: { Authorization: `${localStorage.tokenkey}` }
+        })
         .then(response => (this.branchData = response.data.data));
     },
     submitForm(formName) {
@@ -114,7 +130,6 @@ export default {
             confirmButtonText: "บันทึก"
           }).then(result => {
             if (result.value) {
-            
               console.log("ok1");
               this.saveData();
             }
@@ -127,24 +142,24 @@ export default {
     saveData: function() {
       let apiURL = "http://35.198.219.154:1337/fixcost/create";
       this.axios
-        .post(apiURL, this.ruleForm,{ headers: { Authorization: `${localStorage.tokenkey}` } })
+        .post(apiURL, this.ruleForm, {
+          headers: { Authorization: `${localStorage.tokenkey}` }
+        })
         .then(response => {
           console.log("ok2");
-            Swal.fire({
-                title: "บันทึกข้อมูลเรียบร้อย",
-                type: "success",
-                showConfirmButton: false,
-                timer: 1500
-              }).then(result => {
-                console.log("ok3");
-                this.$router.push(
-                  "/branch/cost/" + this.$route.params.branchID
-                );
-              });
+          Swal.fire({
+            title: "บันทึกข้อมูลเรียบร้อย",
+            type: "success",
+            showConfirmButton: false,
+            timer: 1500
+          }).then(result => {
+            console.log("ok3");
+            this.$router.push("/branch/cost/" + this.$route.params.branchID);
+          });
         })
         .catch(err => {
           console.log(err);
-           Swal.fire({
+          Swal.fire({
             type: "error",
             title: "เกิดข้อผิดพลาด",
             showConfirmButton: false,

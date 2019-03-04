@@ -37,7 +37,7 @@
           <template slot="items" slot-scope="props">
             <td class="text-xs-center">{{ props.index+1}}</td>
             <td class="text-xs-left" width="1000">{{ props.item.position_name }}</td>
-            <td class="text-xs">
+            <td class="text-xs" width="300">
               <v-btn
                 flat
                 icon

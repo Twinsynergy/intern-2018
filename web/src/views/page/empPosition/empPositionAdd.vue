@@ -19,7 +19,7 @@
       <v-card-title primary>
         <h1>เพิ่มตำแหน่งของ {{empData.emp_name}}</h1>
         <v-spacer></v-spacer>
-        <div>
+        <!-- <div>
           <div>
             <v-btn
               color="primary"
@@ -33,7 +33,7 @@
             </v-btn>
             <span class="text-sm">บันทึก</span>
           </div>
-        </div>
+        </div> -->
       </v-card-title>
       <div class="container">
         <el-form
@@ -57,6 +57,14 @@
               ></el-option>
             </el-select>
           </el-form-item>
+          <div>
+            <div class="text-xs-right">
+              <br>
+              <v-btn color="primary" round outline dark @click="submitForm('ruleForm'),ruleForm.emp_id = $route.params.empID">
+                <span>บันทึก</span>
+              </v-btn>
+            </div>
+          </div>
         </el-form>
       </div>
     </div>

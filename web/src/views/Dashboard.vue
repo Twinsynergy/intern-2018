@@ -6,8 +6,8 @@
       </ol>
     </div>
     <br>
-    <el-row :gutter="20">
-      <el-col :span="16">
+    <div class="row">
+      <div class="col-lg-8">
         <div class="alert alert-light">
           <v-card-title primary>
             <h3>ตำแหน่งพนักงานทั้งหมด</h3>
@@ -28,19 +28,19 @@
           <br>
           <br>
         </div>
-      </el-col>
-      <el-col :span="8">
+      </div>
+      <div class="col-lg-4">
         <div class="alert alert-light">
           <v-card-title primary>
-            <h3>Selling Rate / ต่อวัน</h3>
+            <h3>Manday</h3>
           </v-card-title>
-          <hr>
+          <v-divider></v-divider>
           <div>
             <el-table
-              :default-sort="{prop: 'Selling', order: 'descending'}"
+              :default-sort="{prop: 'manday', order: 'descending'}"
               :data="selling"
               style="width: 100%"
-              height="405"
+              height="409"
             >
               <el-table-column label="พนักงาน" width="250">
                 <template slot-scope="scope">
@@ -50,10 +50,10 @@
                   >{{ scope.row.emp_name}} ({{ scope.row.emp_nickname}})</span>
                 </template>
               </el-table-column>
-              <el-table-column prop="Selling" label="Selling" sortable width="100">
+              <el-table-column prop="manday" label="ราคา" sortable width="100">
                 <template slot-scope="scope">
                   <span style="margin-left: 10px">
-                    <font color="#4AD991">{{ Number(scope.row.Selling).toLocaleString()}}</font>
+                    <font color="#4AD991">{{ Number(scope.row.manday).toLocaleString()}}</font>
                   </span>
                 </template>
               </el-table-column>
@@ -63,8 +63,9 @@
             </el-table>
           </div>
         </div>
-      </el-col>
-    </el-row>
+      </div>
+    </div>
+
     <el-row :gutter="20">
       <el-col :span="24">
         <div class="alert alert-light">
@@ -78,7 +79,7 @@
               :data="project"
               style="width: 100%"
               height="290"
-              :default-sort="{prop: 'project_total_cost', order: 'descending'}"
+              :default-sort="{prop: 'project_total_selling', order: 'descending'}"
             >
               <el-table-column label="โปรเจค" width="500" prop="project_name" sortable>
                 <template slot-scope="scope">
@@ -106,12 +107,12 @@
                   <span style="margin-left: 10px">บาท</span>
                 </template>
               </el-table-column>
-              <el-table-column label="   ราคาขาย" width="120" prop="project_total_cost" sortable>
+              <el-table-column label="   ราคาขาย" width="120" prop="project_total_selling" sortable>
                 <template slot-scope="scope">
                   <span style="margin-left: 10px">
                     <font
                       color="#4AD991"
-                    >{{ Number(scope.row.project_total_cost *3).toLocaleString()}}</font>
+                    >{{ Number(scope.row.project_total_selling).toLocaleString()}}</font>
                   </span>
                 </template>
               </el-table-column>
@@ -130,7 +131,7 @@
                   <b>{{ Number(projectTotal.allproject_cost).toLocaleString()}}</b>
                 </font> บาท | ราคาขายทั้งหมด
                 <font color="#4AD991">
-                  <b>{{ Number(projectTotal.allproject_cost*3).toLocaleString()}}</b>
+                  <b>{{ Number(projectTotal.allproject_selling).toLocaleString()}}</b>
                 </font> บาท
               </h4>
             </span>
@@ -148,7 +149,7 @@ export default {
   data() {
     return {
       type: "column2d", // The chart type
-      width: "900", // Width of the chart
+      width: "100%", // Width of the chart
       height: "346", // Height of the chart
       dataFormat: "json", // Data type
       dataSource: {
@@ -244,5 +245,8 @@ export default {
 <style>
 g[class$="creditgroup"] {
   display: none !important;
+}
+h1 {
+  text-align: left;
 }
 </style>

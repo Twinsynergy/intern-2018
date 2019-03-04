@@ -6,8 +6,6 @@ import store from "./store";
 import "roboto-fontface/css/roboto/roboto-fontface.css";
 import "material-design-icons-iconfont/dist/material-design-icons.css";
 import "./css/global.css";
-import Donut from "vue-css-donut-chart";
-import "vue-css-donut-chart/dist/vcdonut.css";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import ElementUI from "element-ui";
@@ -34,7 +32,6 @@ Vue.use(
 Vue.use(require("vue-moment"));
 Vue.use(ElementUI, { locale });
 Vue.use(VueAxios, axios);
-Vue.use(Donut);
 Vue.config.productionTip = false;
 
 new Vue({

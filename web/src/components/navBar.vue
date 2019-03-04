@@ -1,43 +1,32 @@
 <template>
   <div>
-    <nav class="navbar navbar-dark fixed-top">
-      <span class="navbar-brand">
-         <img src="../assets/logo3.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    <v-list-tile avatar>
+      <v-list-tile-avatar>
+        <img src="../assets/logo3.png">
+      </v-list-tile-avatar>
 
-         <b> ระบบจัดการข้อมูล
-          บริษัททวินซินเนอร์จี้</b>
-
-      </span>
-
-      <v-list-tile avatar>
-        <v-list-tile-avatar>
-          <img src="https://api.adorable.io/avatars/285/rwrwr.png">
-        </v-list-tile-avatar>
-
-        <v-list-tile-content>
-          <v-list-tile-title>
-            <font color="white">{{$store.state.getApiData.username}}</font>
-          </v-list-tile-title>
-          <v-list-tile-sub-title>
-            <el-dropdown trigger="click">
-              <span class="el-dropdown-link">
-                {{$store.state.getApiData.status}}
-                <i class="el-icon-arrow-down el-icon--right"></i>
-              </span>
-              <el-dropdown-menu slot="dropdown">
-                <!-- <el-dropdown-item>
-                  <v-icon>settings</v-icon>ตั้งค่า
-                </el-dropdown-item>-->
-                <v-btn flat small @click="alLogout">
-                  <v-icon color="red">power_settings_new</v-icon>
-                  <font color="red"> ออกจากระบบ</font>
-                </v-btn>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </v-list-tile-sub-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </nav>
+      <v-list-tile-content>
+        <v-list-tile-title>
+          <font color="white">{{$store.state.getApiData.name}}</font>
+        </v-list-tile-title>
+        <v-list-tile-sub-title>
+          <el-dropdown trigger="click">
+            <span class="el-dropdown-link">
+              {{$store.state.getApiData.status}}
+              <i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <v-btn flat block to="/setting">
+                <font left color="gray">การตั้งค่า</font>
+              </v-btn>
+              <v-btn flat block @click="alLogout">
+                <font left color="red">ออกจากระบบ</font>
+              </v-btn>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </v-list-tile-sub-title>
+      </v-list-tile-content>
+    </v-list-tile>
   </div>
 </template>
 
@@ -47,6 +36,10 @@ export default {
     logout: function() {
       localStorage.clear();
       this.$store.state.getApiData.tokenkey = null;
+      this.$store.state.getApiData.id = null;
+      this.$store.state.getApiData.name = null;
+      this.$store.state.getApiData.status = null;
+      this.$store.state.getApiData.username = null;
     },
     alLogout: function() {
       Swal.fire({

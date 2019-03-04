@@ -43,7 +43,10 @@
             <td class="text-xs-center">{{ props.index+1 }}</td>
             <td class="text-xs-left" width="400">{{ props.item.fixcost_title }}</td>
             <td class="text-xs-center" width="400">
-              <v-chip color="#FEEFF0" text-color="#F56C6C">{{ Number(props.item.fixcost_price).toLocaleString()}} บาท</v-chip>
+              <v-chip
+                color="#FEEFF0"
+                text-color="#F56C6C"
+              >{{ Number(props.item.fixcost_price).toLocaleString()}} บาท</v-chip>
             </td>
             <td class="text-xs">
               <v-btn
@@ -72,6 +75,18 @@
             icon="warning"
             outline
           >ไม่พบข้อมูล "{{ searchfixcost }}"</v-alert>
+          <template slot="footer">
+            <td :colspan="headersfixcost.length">
+              <br>
+              <h4 class="text-xs-right">
+                รวมค่าใช้จ่ายทั่วไปทั้งหมด
+                <font
+                  color="#4AD991"
+                >{{Number(fixcostTotal.branchFixcostTotal).toLocaleString()}}</font> บาท
+              </h4>
+              <br>
+            </td>
+          </template>
           <template
             slot="pageText"
             slot-scope="props"
@@ -127,7 +142,10 @@
               </v-chip>
             </td>
             <td class="text-xs-center">
-              <v-chip color="#FEEFF0" text-color="#F56C6C">{{ Number(props.item.branch_addit_price).toLocaleString()}} บาท</v-chip>
+              <v-chip
+                color="#FEEFF0"
+                text-color="#F56C6C"
+              >{{ Number(props.item.branch_addit_price).toLocaleString()}} บาท</v-chip>
             </td>
             <td class="text-xs">
               <v-btn
@@ -155,6 +173,18 @@
             icon="warning"
             outline
           >ไม่พบข้อมูล "{{ searchaddit }}"</v-alert>
+          <template slot="footer">
+            <td :colspan="headersaddit.length">
+              <br>
+              <h4 class="text-xs-right">
+                รวมค่าใช้จ่ายอื่นๆทั้งหมด
+                <font
+                  color="#4AD991"
+                >{{Number(additTotal.branchAdditTotal).toLocaleString()}}</font> บาท
+              </h4>
+              <br>
+            </td>
+          </template>
           <template
             slot="pageText"
             slot-scope="props"
@@ -240,6 +270,8 @@ export default {
       ],
       dessertsfixcost: [],
       dessertsaddit: [],
+      fixcostTotal: [],
+      additTotal: [],
       selectedDatafixcost: { id: "", name: "" },
       selectedDataaddit: { id: "", name: "" },
       branchData: "",
@@ -271,10 +303,11 @@ export default {
         .then(
           response => (
             (this.dessertsfixcost = response.data.data),
+            (this.fixcostTotal = response.data),
             (this.loading = false),
             (this.nodata = "ไม่มีข้อมูล")
           )
-        )  ;
+        );
     },
     getDataaddit: function() {
       let apiURL = "http://35.198.219.154:1337/branchcost/addit/";
@@ -287,6 +320,7 @@ export default {
         .then(
           response => (
             (this.dessertsaddit = response.data.data),
+            (this.additTotal = response.data),
             (this.loading2 = false),
             (this.nodata2 = "ไม่มีข้อมูล")
           )
@@ -314,7 +348,7 @@ export default {
         .then(response => {
           (this.loading = true), (this.nodata = "กำลังโหลด..");
           console.log("ok2");
-            Swal.fire({
+          Swal.fire({
             title: "ลบข้อมูล " + this.selectedDatafixcost.name + " เรียบร้อย",
             type: "success",
             showConfirmButton: false,
@@ -344,7 +378,7 @@ export default {
         .then(response => {
           (this.loading2 = true), (this.nodata2 = "กำลังโหลด..");
           console.log("ok2");
-           Swal.fire({
+          Swal.fire({
             title: "ลบข้อมูล " + this.selectedDataaddit.name + " เรียบร้อย",
             type: "success",
             showConfirmButton: false,
@@ -376,7 +410,6 @@ export default {
         confirmButtonText: "ยืนยัน"
       }).then(result => {
         if (result.value) {
-        
           this.deleteDatafixcost();
           console.log("ok1");
         }
@@ -394,7 +427,6 @@ export default {
         confirmButtonText: "ยืนยัน"
       }).then(result => {
         if (result.value) {
-         
           this.deleteDataaddit();
           console.log("ok1");
         }

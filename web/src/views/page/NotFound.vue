@@ -30,7 +30,7 @@
           <p>
             <v-icon style=" font-size: 150px;">mood_bad</v-icon>
           </p>
-          <h1>ไม่พบเพจที่ต้องการ</h1>
+          <h1 class="text-xs-center">ไม่พบเพจที่ต้องการ</h1>
           <br>
           <div>
             <v-btn small fab outline color="blue" @click="back">

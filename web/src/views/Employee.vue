@@ -60,7 +60,7 @@
                 <v-icon>monetization_on</v-icon>
               </v-btn>
             </td>
-            <td class="text-xs">
+            <td class="text-xs" width="300">
               <v-btn
                 flat
                 icon

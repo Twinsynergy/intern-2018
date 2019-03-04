@@ -31,10 +31,10 @@
                 <span class="text-sm">แก้ไข</span>
               </div>
               <div v-if="!editBtnSeen">
-                <v-btn color="green" fab small dark outline @click="submitForm('ruleForm')">
+                <!-- <v-btn color="green" fab small dark outline @click="submitForm('ruleForm')">
                   <v-icon>save</v-icon>
                 </v-btn>
-                <span class="text-sm">บันทึก</span>
+                <span class="text-sm">บันทึก</span>-->
                 <v-btn color="red" fab small dark outline @click="cancelForm();">
                   <v-icon>clear</v-icon>
                 </v-btn>
@@ -44,54 +44,64 @@
           </div>
         </div>
       </v-card-title>
+
       <div class="container">
         <div v-if="editBtnSeen">
-          <el-row :gutter="20">
-            <el-col :span="3">
+          <div class="row">
+            <div class="col-3">
               <p style="text-align: right;">ชื่อโปรเจค :</p>
-            </el-col>
-            <el-col :span="14">
+            </div>
+            <div class="col-8">
               <p style="text-align: left;">{{projectData.project_name}}</p>
-            </el-col>
-          </el-row>
+            </div>
+          </div>
           <br>
-          <el-row :gutter="20">
-            <el-col :span="3">
+          <div class="row">
+            <div class="col-3">
               <p style="text-align: right;">ชื่อลูกค้า :</p>
-            </el-col>
-            <el-col :span="14">
+            </div>
+            <div class="col-8">
               <p style="text-align: left;">{{projectData.project_costomer_name}}</p>
-            </el-col>
-          </el-row>
+            </div>
+          </div>
           <br>
-          <el-row :gutter="20">
-            <el-col :span="3">
+          <div class="row">
+            <div class="col-3">
               <p style="text-align: right;">วันที่ดำเนินการ :</p>
-            </el-col>
-            <el-col :span="14">
+            </div>
+            <div class="col-8">
               <p
                 style="text-align: left;"
               >{{projectData.project_start_date | moment("DD MMMM YYYY") }} ถึง {{projectData.project_end_date | moment("DD MMMM YYYY") }}</p>
-            </el-col>
-          </el-row>
+            </div>
+          </div>
           <br>
-          <el-row :gutter="20">
-            <el-col :span="3">
+          <div class="row">
+            <div class="col-3">
               <p style="text-align: right;">ทีมที่รับผิดชอบ :</p>
-            </el-col>
-            <el-col :span="14">
+            </div>
+            <div class="col-8">
               <p style="text-align: left;">{{projectData.project_team_name}}</p>
-            </el-col>
-          </el-row>
+            </div>
+          </div>
           <br>
-          <el-row :gutter="20">
-            <el-col :span="3">
+          <div class="row">
+            <div class="col-3">
+              <p style="text-align: right;">กำไรที่ต้องการ :</p>
+            </div>
+            <div class="col-8">
+              <p style="text-align: left;">{{projectData.selling }} %</p>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-3">
               <p style="text-align: right;">หมายเหตุ :</p>
-            </el-col>
-            <el-col :span="14">
+            </div>
+            <div class="col-8">
               <p style="text-align: left;">{{projectData.project_note}}</p>
-            </el-col>
-          </el-row>
+            </div>
+          </div>
         </div>
         <el-form
           v-if="!editBtnSeen"
@@ -141,15 +151,28 @@
           <el-form-item label="ทีมที่รับผิดชอบ" prop="project_team_name">
             <el-input v-model="ruleForm.project_team_name"></el-input>
           </el-form-item>
+          <el-form-item label="กำไรที่ต้องการ" prop="selling">
+            <el-input placeholder="คิดเป็นเปอร์เซ็นต์" v-model.number="ruleForm.selling">
+              <template slot="append">%</template>
+            </el-input>
+          </el-form-item>
           <el-form-item label="หมายเหตุ" prop="project_note">
             <el-input type="textarea" v-model="ruleForm.project_note"></el-input>
           </el-form-item>
+          <div v-if="!editBtnSeen">
+            <div class="text-xs-right">
+              <br>
+              <v-btn color="primary" round outline dark @click="submitForm('ruleForm')">
+                <span>บันทึก</span>
+              </v-btn>
+            </div>
+          </div>
         </el-form>
       </div>
     </div>
 
-    <el-row :gutter="20">
-      <el-col :span="12">
+    <div class="row">
+      <div class="col-sm-6">
         <div class="alert alert-light">
           <v-card-title primary>
             <h3>Descriptions</h3>
@@ -190,8 +213,8 @@
             </template>
           </v-data-table>
         </div>
-      </el-col>
-      <el-col :span="12">
+      </div>
+      <div class="col-sm-6">
         <div class="alert alert-light">
           <v-card-title primary>
             <h3>ค่าใช้จ่ายเพิ่มเติม</h3>
@@ -287,14 +310,21 @@
             <!-- <h4 class="text-xs-right">Total: {{Number(additTotal).toLocaleString()}} บาท</h4> -->
           </div>
         </div>
-      </el-col>
-    </el-row>
+      </div>
+    </div>
 
     <el-row :gutter="20"></el-row>
     <div class="alert alert-light">
       <h3 class="text-xs-right">
-        รวมค่าใช้จ่ายในโปรเจคทั้งหมด :
-        <b>{{Number(ProjectTotalData.project_cost_total).toLocaleString()}}</b> บาท
+        <h4>
+          รวมค่าใช้จ่ายในโปรเจคทั้งหมด :
+          <font color="#f442b9">
+            <b>{{ Number(ProjectTotalData.project_cost_total).toLocaleString()}}</b>
+          </font> บาท | ราคาขายของโปรเจค :
+          <font color="#4AD991">
+            <b>{{ Number(ProjectTotalData.project_cost_selling).toLocaleString()}}</b>
+          </font> บาท
+        </h4>
       </h3>
     </div>
   </div>
@@ -336,6 +366,7 @@ export default {
         project_start_date: "",
         project_end_date: "",
         project_team_name: "",
+        selling: "",
         project_note: ""
       },
       ruleFormAddit: {
@@ -380,6 +411,10 @@ export default {
         ],
         project_team_name: [
           { required: true, message: "โปรดกรอกข้อมูล", trigger: "blur" }
+        ],
+        selling: [
+          { required: true, message: "โปรดกรอกข้อมูล", trigger: "blur" },
+          { type: "number", message: "กรอกข้อมูลเป็นตัวเลขเท่านั้น" }
         ],
         project_note: [
           { required: true, message: "โปรดกรอกข้อมูล", trigger: "blur" }
@@ -438,6 +473,7 @@ export default {
       this.ruleForm.project_start_date = this.projectData.project_start_date;
       this.ruleForm.project_end_date = this.projectData.project_end_date;
       this.ruleForm.project_team_name = this.projectData.project_team_name;
+      this.ruleForm.selling = this.projectData.selling;
       this.ruleForm.project_note = this.projectData.project_note;
     },
     getAllData: function() {
@@ -468,7 +504,6 @@ export default {
               showConfirmButton: true
             }).then(result => {
               console.log("ok3");
-            
             });
           }
         });
@@ -533,6 +568,7 @@ export default {
           }).then(result => {
             console.log("ok3");
             // this.$router.push("/project");
+            this.getProjectTotalData();
             this.getAllData();
             this.editBtnSeen = true;
           });

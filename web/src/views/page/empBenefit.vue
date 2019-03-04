@@ -44,7 +44,10 @@
             <td class="text-xs-center">{{ props.index+1 }}</td>
             <td class="text-xs-center" width="400">{{ props.item.benefit_title }}</td>
             <td class="text-xs-center">
-              <v-chip color="#FEEFF0" text-color="#F56C6C">{{ Number(props.item.benefit_price).toLocaleString()}} บาท</v-chip>
+              <v-chip
+                color="#FEEFF0"
+                text-color="#F56C6C"
+              >{{ Number(props.item.benefit_price).toLocaleString()}} บาท</v-chip>
             </td>
             <td class="text-xs">
               <v-btn
@@ -71,6 +74,18 @@
             color="error"
             icon="warning"
           >ไม่พบข้อมูล "{{ search }}"</v-alert>
+          <template slot="footer">
+            <td :colspan="headers.length">
+              <br>
+              <h4 class="text-xs-right">
+                รวมค่าใช้จ่ายสิทธิประโยชน์ทั้งหมด
+                <font
+                  color="#4AD991"
+                >{{Number(benafitTotal.benafitTotal).toLocaleString()}}</font> บาท
+              </h4>
+              <br>
+            </td>
+          </template>
           <template
             slot="pageText"
             slot-scope="props"
@@ -100,6 +115,7 @@ export default {
       nodata: "กำลังโหลด..",
       loading: true,
       search: "",
+      benafitTotal:[],
       headers: [
         {
           text: "#",
@@ -153,10 +169,11 @@ export default {
         .then(
           response => (
             (this.desserts = response.data.data),
+            (this.benafitTotal = response.data),
             (this.loading = false),
             (this.nodata = "ไม่มีข้อมูล")
           )
-        )       ;
+        );
     },
     addButton: function() {
       this.$router.push({

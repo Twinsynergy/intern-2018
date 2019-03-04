@@ -31,6 +31,8 @@ const branchadditAdd = () => import("./views/page/branchCostpage/branchAdditAdd.
 const branchfixcostdetail = () => import("./views/page/branchCostpage/branchCostDetail.vue");
 const branchadditdetail = () => import("./views/page/branchCostpage/branchAdditDetail.vue");
 const NotFoundComponent = () => import("./views/page/NotFound.vue");
+const projectEmpAdd = () => import("./views/page/Projectpage/projectEmpAdd.vue");
+const settingPage = () => import("./views/page/setting.vue");
 const dev1 = () => import("./views/input.vue");
 const dev2 = () => import("./views/upload.vue");
 
@@ -43,6 +45,11 @@ const router = new Router({
       path: "/",
       name: "dashboard",
       component: Home
+    },
+    {
+      path: "/setting",
+      name: "settingPage",
+      component: settingPage
     },
     {
       path: "/branch",
@@ -88,6 +95,11 @@ const router = new Router({
       path: "/project/detail/:projectID",
       name: "projectDetail",
       component: ProjectDetail
+    },
+    {
+      path: "/project/detail/team/:projectID/addEmp",
+      name: "projectEmpAdd",
+      component: projectEmpAdd
     },
     {
       path: "/emp",

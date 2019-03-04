@@ -14,14 +14,6 @@
       <v-card-title primary>
         <h1>เพิ่มข้อมูลใหม่</h1>
         <v-spacer></v-spacer>
-        <div>
-          <div>
-            <v-btn color="primary" fab small outline dark @click="submitForm('ruleForm')">
-              <v-icon>save</v-icon>
-            </v-btn>
-            <span class="text-sm">บันทึก</span>
-          </div>
-        </div>
       </v-card-title>
       <div class="container">
         <el-form
@@ -69,9 +61,22 @@
           <el-form-item label="ทีมที่รับผิดชอบ" prop="project_team_name">
             <el-input v-model="ruleForm.project_team_name"></el-input>
           </el-form-item>
+          <el-form-item label="กำไรที่ต้องการ" prop="selling">
+            <el-input placeholder="คิดเป็นเปอร์เซ็นต์" v-model.number="ruleForm.selling">
+              <template slot="append">%</template>
+            </el-input>
+          </el-form-item>
           <el-form-item label="หมายเหตุ" prop="project_note">
             <el-input type="textarea" v-model="ruleForm.project_note"></el-input>
           </el-form-item>
+          <div>
+            <div class="text-xs-right">
+              <br>
+              <v-btn color="primary" round outline dark @click="submitForm('ruleForm')">
+                <span>บันทึก</span>
+              </v-btn>
+            </div>
+          </div>
         </el-form>
       </div>
     </div>
@@ -89,6 +94,7 @@ export default {
         project_start_date: "",
         project_end_date: "",
         project_team_name: "",
+        selling: "",
         project_note: ""
       },
       rules: {
@@ -114,6 +120,10 @@ export default {
         ],
         project_team_name: [
           { required: true, message: "โปรดกรอกข้อมูล", trigger: "blur" }
+        ],
+        selling: [
+          { required: true, message: "โปรดกรอกข้อมูล", trigger: "blur" },
+          { type: "number", message: "กรอกข้อมูลเป็นตัวเลขเท่านั้น" }
         ],
         project_note: [
           { required: true, message: "โปรดกรอกข้อมูล", trigger: "blur" }
