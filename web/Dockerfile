@@ -2,9 +2,9 @@ FROM node:10-alpine as builder
 RUN apk add --update alpine-sdk python python-dev py-pip build-base
 WORKDIR /app
 COPY ./package*.json ./
-RUN yarn install 
+RUN npm install 
 COPY ./ ./
-RUN yarn build
+RUN npm run build
 
 FROM nginx:1.13-alpine
 LABEL name="Backoffice" \
