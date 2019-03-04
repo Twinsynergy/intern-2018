@@ -183,7 +183,7 @@ export default {
       this.ruleForm.benefit_note = this.benefitData.benefit_note;
     },
     getAllData: function() {
-      let apiURL = "http://35.198.219.154:1337/benefit/";
+      let apiURL = "http://api:3030/benefit/";
       let getID = this.$route.params.BenefitID;
       let view = "/view";
       axios
@@ -198,7 +198,7 @@ export default {
         );
     },
     saveData: function() {
-      let apiURL = "http://35.198.219.154:1337/benefit/update";
+      let apiURL = "http://api:3030/benefit/update";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }

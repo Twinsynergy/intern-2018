@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     getAllData: function() {
-      let url = "http://35.198.219.154:1337/";
+      let url = "http://api:3030/";
 
       axios
         .get(url + this.columname,{ headers: { Authorization: `${localStorage.tokenkey}` } })
@@ -102,7 +102,7 @@ export default {
         );
     },
     saveData: function() {
-      let apiURL = "http://35.198.219.154:1337/branch/create";
+      let apiURL = "http://api:3030/branch/create";
       this.axios
         .post(apiURL, this.vbranch,{ headers: { Authorization: `${localStorage.tokenkey}` } })
         .then(response => {

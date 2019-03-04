@@ -87,7 +87,7 @@ export default {
       });
     },
     saveData: function() {
-      let apiURL = "http://35.198.219.154:1337/branch/create";
+      let apiURL = "http://api:3030/branch/create";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }

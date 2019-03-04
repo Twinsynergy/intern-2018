@@ -434,7 +434,7 @@ export default {
     deleteDataAddit: function() {
       this.axios
         .post(
-          "http://35.198.219.154:1337/projectaddit/delete",
+          "http://api:3030/projectaddit/delete",
           this.selectedDataAddit,
           { headers: { Authorization: `${localStorage.tokenkey}` } }
         )
@@ -477,7 +477,7 @@ export default {
       this.ruleForm.project_note = this.projectData.project_note;
     },
     getAllData: function() {
-      let apiURL = "http://35.198.219.154:1337/projectmanage/";
+      let apiURL = "http://api:3030/projectmanage/";
       let getID = this.$route.params.projectID;
       let view = "/view";
       axios
@@ -509,7 +509,7 @@ export default {
         });
     },
     getProjectTotalData: function() {
-      let apiURL = "http://35.198.219.154:1337/manday/project/";
+      let apiURL = "http://api:3030/manday/project/";
       let getID = this.$route.params.projectID;
       let view = "/view";
       axios
@@ -519,7 +519,7 @@ export default {
         .then(response => (this.ProjectTotalData = response.data));
     },
     projectaddit: function() {
-      let apiURL = "http://35.198.219.154:1337/project/projectaddit/";
+      let apiURL = "http://api:3030/project/projectaddit/";
       let getID = this.$route.params.projectID;
       let view = "/view";
       axios
@@ -553,7 +553,7 @@ export default {
       });
     },
     saveData: function() {
-      let apiURL = "http://35.198.219.154:1337/projectmanage/update";
+      let apiURL = "http://api:3030/projectmanage/update";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }
@@ -584,7 +584,7 @@ export default {
         });
     },
     saveDataAddit: function() {
-      let apiURL = "http://35.198.219.154:1337/projectaddit/create";
+      let apiURL = "http://api:3030/projectaddit/create";
       this.axios
         .post(apiURL, this.ruleFormAddit, {
           headers: { Authorization: `${localStorage.tokenkey}` }
@@ -667,7 +667,7 @@ export default {
       });
     },
     getDataTeam: function() {
-      let apiURL = "http://35.198.219.154:1337/manday/project/";
+      let apiURL = "http://api:3030/manday/project/";
       let getID = this.$route.params.projectID;
       let view = "/view";
       axios

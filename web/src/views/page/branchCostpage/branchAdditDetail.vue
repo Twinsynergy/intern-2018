@@ -171,7 +171,7 @@ export default {
       this.ruleForm.branch_addit_date = this.branchData.branch_addit_date;
     },
     getAllData: function() {
-      let apiURL = "http://35.198.219.154:1337/branchaddit/";
+      let apiURL = "http://api:3030/branchaddit/";
       let getID = this.$route.params.AdditID;
       let view = "/view";
       axios
@@ -186,7 +186,7 @@ export default {
         );
     },
     saveData: function() {
-      let apiURL = "http://35.198.219.154:1337/branchaddit/update";
+      let apiURL = "http://api:3030/branchaddit/update";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }

@@ -151,7 +151,7 @@ export default {
       this.$router.push("/project/detail/team/" + this.$route.params.projectID);
     },
     getAllData: function() {
-      let apiURL = "http://35.198.219.154:1337/team/";
+      let apiURL = "http://api:3030/team/";
       let getID = this.$route.params.teamID;
       let view = "/view";
       axios
@@ -162,7 +162,7 @@ export default {
        ;
     },
     getProjectData: function() {
-      let apiURL = "http://35.198.219.154:1337/projectmanage/";
+      let apiURL = "http://api:3030/projectmanage/";
       let getID = this.$route.params.projectID;
       let view = "/view";
       axios
@@ -172,7 +172,7 @@ export default {
         .then(response => (this.projectData = response.data.data));
     },
     saveData: function() {
-      let apiURL = "http://35.198.219.154:1337/team/update";
+      let apiURL = "http://api:3030/team/update";
       this.axios
         .post(apiURL, this.teamData, {
           headers: { Authorization: `${localStorage.tokenkey}` }

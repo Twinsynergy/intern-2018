@@ -155,7 +155,7 @@ export default {
       });
     },
     saveData: function() {
-      let apiURL = "http://35.198.219.154:1337/projectmanage/create";
+      let apiURL = "http://api:3030/projectmanage/create";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }

@@ -106,7 +106,7 @@ export default {
       this.ruleForm.position_name = this.positionData.position_name;
     },
     getAllData: function() {
-      let apiURL = "http://35.198.219.154:1337/position/";
+      let apiURL = "http://api:3030/position/";
       let getID = this.$route.params.positionID;
       let view = "/view";
       axios
@@ -126,7 +126,7 @@ export default {
       // })
     },
     saveData: function() {
-      let apiURL = "http://35.198.219.154:1337/position/update";
+      let apiURL = "http://api:3030/position/update";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }

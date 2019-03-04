@@ -254,7 +254,7 @@ export default {
   methods: {
     getData: function() {
       axios
-        .get("http://35.198.219.154:1337/api/users/datatable", {
+        .get("http://api:3030/api/users/datatable", {
           headers: { Authorization: `${localStorage.tokenkey}` }
         })
         .then(
@@ -288,7 +288,7 @@ export default {
       //   this.$router.push("/position/add");
     },
     getUserData: function() {
-      let apiURL = "http://35.198.219.154:1337/api/users/";
+      let apiURL = "http://api:3030/api/users/";
       let getID = localStorage.id;
       let view = "/view";
       axios
@@ -325,7 +325,7 @@ export default {
       this.$refs[formName].resetFields();
     },
     saveNewUserData: function() {
-      let apiURL = "http://35.198.219.154:1337/api/users/register";
+      let apiURL = "http://api:3030/api/users/register";
       this.axios
         .post(apiURL, this.ruleForm3, {
           headers: { Authorization: `${localStorage.tokenkey}` }
@@ -373,7 +373,7 @@ export default {
       });
     },
     saveNameData: function() {
-      let apiURL = "http://35.198.219.154:1337/api/users/updatename";
+      let apiURL = "http://api:3030/api/users/updatename";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }
@@ -425,7 +425,7 @@ export default {
       });
     },
     saveData: function() {
-      let apiURL = "http://35.198.219.154:1337/api/users/update";
+      let apiURL = "http://api:3030/api/users/update";
       this.axios
         .post(apiURL, this.ruleForm2, {
           headers: { Authorization: `${localStorage.tokenkey}` }
@@ -475,7 +475,7 @@ export default {
     deleteData: function() {
       this.axios
         .post(
-          "http://35.198.219.154:1337/api/users/delete",
+          "http://api:3030/api/users/delete",
           this.selectedData,
           {
             headers: { Authorization: `${localStorage.tokenkey}` }

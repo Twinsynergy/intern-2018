@@ -191,14 +191,14 @@ export default {
     },
     getSellData: function() {
       axios
-        .get("http://35.198.219.154:1337/manday/emp/datatable", {
+        .get("http://api:3030/manday/emp/datatable", {
           headers: { Authorization: `${localStorage.tokenkey}` }
         })
         .then(response => (this.selling = response.data.data));
     },
     getProjectData: function() {
       axios
-        .get("http://35.198.219.154:1337/projectmanage/datatable", {
+        .get("http://api:3030/projectmanage/datatable", {
           headers: { Authorization: `${localStorage.tokenkey}` }
         })
         .then(
@@ -210,7 +210,7 @@ export default {
     },
     getPositionData: function() {
       axios
-        .get("http://35.198.219.154:1337/dashboard/position", {
+        .get("http://api:3030/dashboard/position", {
           headers: { Authorization: `${localStorage.tokenkey}` }
         })
         .then(

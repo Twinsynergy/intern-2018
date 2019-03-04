@@ -195,13 +195,13 @@ export default {
     },
     getbranchData: function() {
       axios
-        .get("http://35.198.219.154:1337/branch/datatable", {
+        .get("http://api:3030/branch/datatable", {
           headers: { Authorization: `${localStorage.tokenkey}` }
         })
         .then(response => (this.branchData = response.data.data));
     },
     saveData: function() {
-      let apiURL = "http://35.198.219.154:1337/emp/create";
+      let apiURL = "http://api:3030/emp/create";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }

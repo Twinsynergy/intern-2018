@@ -124,7 +124,7 @@ export default {
       this.ruleForm.branch_address = this.branchData.branch_address;
     },
     getAllData: function() {
-      let apiURL = "http://35.198.219.154:1337/branch/";
+      let apiURL = "http://api:3030/branch/";
       let getID = this.$route.params.branchID;
       let view = "/view";
       axios
@@ -134,7 +134,7 @@ export default {
         .then(response => (this.branchData = response.data.data));
     },
     saveData: function() {
-      let apiURL = "http://35.198.219.154:1337/branch/update";
+      let apiURL = "http://api:3030/branch/update";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }

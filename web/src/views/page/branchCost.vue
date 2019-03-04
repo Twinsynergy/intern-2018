@@ -283,7 +283,7 @@ export default {
   },
   methods: {
     getAllData: function() {
-      let apiURL = "http://35.198.219.154:1337/branch/";
+      let apiURL = "http://api:3030/branch/";
       let getID = this.$route.params.branchID;
       let view = "/view";
       axios
@@ -293,7 +293,7 @@ export default {
         .then(response => (this.branchData = response.data.data));
     },
     getDatafixcost: function() {
-      let apiURL = "http://35.198.219.154:1337/branchcost/fixcost/";
+      let apiURL = "http://api:3030/branchcost/fixcost/";
       let getID = this.$route.params.branchID;
       let view = "/view";
       axios
@@ -310,7 +310,7 @@ export default {
         );
     },
     getDataaddit: function() {
-      let apiURL = "http://35.198.219.154:1337/branchcost/addit/";
+      let apiURL = "http://api:3030/branchcost/addit/";
       let getID = this.$route.params.branchID;
       let view = "/view";
       axios
@@ -341,7 +341,7 @@ export default {
     deleteDatafixcost: function() {
       this.axios
         .post(
-          "http://35.198.219.154:1337/fixcost/delete",
+          "http://api:3030/fixcost/delete",
           this.selectedDatafixcost,
           { headers: { Authorization: `${localStorage.tokenkey}` } }
         )
@@ -371,7 +371,7 @@ export default {
     deleteDataaddit: function() {
       this.axios
         .post(
-          "http://35.198.219.154:1337/branchaddit/delete",
+          "http://api:3030/branchaddit/delete",
           this.selectedDataaddit,
           { headers: { Authorization: `${localStorage.tokenkey}` } }
         )
