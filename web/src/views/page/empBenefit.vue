@@ -149,7 +149,7 @@ export default {
   },
   methods: {
     getData: function() {
-      let apiURL = "http://api:3030/emp/";
+      let apiURL = "http://178.128.80.240:3030/emp/";
       let getID = this.$route.params.empID;
       let view = "/view";
       axios
@@ -159,7 +159,7 @@ export default {
         .then(response => (this.empData = response.data.data));
     },
     getDatabenefit: function() {
-      let apiURL = "http://api:3030/employee/benefit/";
+      let apiURL = "http://178.128.80.240:3030/employee/benefit/";
       let getID = this.$route.params.empID;
       let view = "/view";
       axios
@@ -183,7 +183,7 @@ export default {
     },
     deleteData: function() {
       this.axios
-        .post("http://api:3030/benefit/delete", this.selectedData, {
+        .post("http://178.128.80.240:3030/benefit/delete", this.selectedData, {
           headers: { Authorization: `${localStorage.tokenkey}` }
         })
         .then(response => {

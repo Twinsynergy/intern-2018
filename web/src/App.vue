@@ -173,7 +173,7 @@ export default {
     },
 
     login: function() {
-      let apiURL = "http://api:3030/api/users/login";
+      let apiURL = "http://178.128.80.240:3030/api/users/login";
       this.axios
         .post(apiURL, this.ruleForm)
         .then(response => {

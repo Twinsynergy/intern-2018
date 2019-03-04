@@ -80,7 +80,7 @@ export default {
       });
     },
     saveData: function() {
-      let apiURL = "http://api:3030/position/create";
+      let apiURL = "http://178.128.80.240:3030/position/create";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }

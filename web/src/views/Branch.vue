@@ -135,7 +135,7 @@ export default {
   methods: {
     getData: function() {
       axios
-        .get("http://api:3030/branch/datatable", {
+        .get("http://178.128.80.240:3030/branch/datatable", {
           headers: { Authorization: `${localStorage.tokenkey}` }
         })
         .then(
@@ -171,7 +171,7 @@ export default {
     },
     deleteData: function() {
       this.axios
-        .post("http://api:3030/branch/delete", this.selectedData, {
+        .post("http://178.128.80.240:3030/branch/delete", this.selectedData, {
           headers: { Authorization: `${localStorage.tokenkey}` }
         })
         .then(response => {

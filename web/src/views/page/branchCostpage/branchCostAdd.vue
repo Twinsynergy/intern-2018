@@ -108,7 +108,7 @@ export default {
       this.$router.push("/branch/cost/" + this.$route.params.branchID);
     },
     getAllData: function() {
-      let apiURL = "http://api:3030/branch/";
+      let apiURL = "http://178.128.80.240:3030/branch/";
       let getID = this.$route.params.branchID;
       let view = "/view";
       axios
@@ -140,7 +140,7 @@ export default {
       });
     },
     saveData: function() {
-      let apiURL = "http://api:3030/fixcost/create";
+      let apiURL = "http://178.128.80.240:3030/fixcost/create";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }

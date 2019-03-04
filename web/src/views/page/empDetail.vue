@@ -301,13 +301,13 @@ export default {
     },
     getbranchData: function() {
       axios
-        .get("http://api:3030/branch/datatable", {
+        .get("http://178.128.80.240:3030/branch/datatable", {
           headers: { Authorization: `${localStorage.tokenkey}` }
         })
         .then(response => (this.branch = response.data.data));
     },
     getAllData: function() {
-      let apiURL = "http://api:3030/emp/";
+      let apiURL = "http://178.128.80.240:3030/emp/";
       let getID = this.$route.params.empID;
       let view = "/view";
       axios
@@ -322,7 +322,7 @@ export default {
         );
     },
     saveData: function() {
-      let apiURL = "http://api:3030/emp/update";
+      let apiURL = "http://178.128.80.240:3030/emp/update";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }

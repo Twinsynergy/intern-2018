@@ -267,7 +267,7 @@ export default {
       this.ruleForm.project_note = this.projectData.project_note;
     },
     getAllData: function() {
-      let apiURL = "http://api:3030/projectmanage/";
+      let apiURL = "http://178.128.80.240:3030/projectmanage/";
       let getID = this.$route.params.projectID;
       let view = "/view";
       axios
@@ -278,7 +278,7 @@ export default {
         ;
     },
     saveData: function() {
-      let apiURL = "http://api:3030/projectmanage/update";
+      let apiURL = "http://178.128.80.240:3030/projectmanage/update";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }

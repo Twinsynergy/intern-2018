@@ -335,13 +335,13 @@ export default {
     },
     getpositionData: function() {
       axios
-        .get("http://api:3030/position/datatable", {
+        .get("http://178.128.80.240:3030/position/datatable", {
           headers: { Authorization: `${localStorage.tokenkey}` }
         })
         .then(response => (this.positionData = response.data.data));
     },
     getMandayData: function() {
-      let apiURL = "http://api:3030/manday/project/";
+      let apiURL = "http://178.128.80.240:3030/manday/project/";
       let getID = this.$route.params.projectID;
       let view = "/view";
       axios
@@ -351,7 +351,7 @@ export default {
         .then(response => console.log("okk"));
     },
     getPostition: function() {
-      let apiURL = "http://api:3030/position/";
+      let apiURL = "http://178.128.80.240:3030/position/";
       let getID = this.ruleForm.position_id;
       let view = "/view";
       axios
@@ -361,7 +361,7 @@ export default {
         .then(response => (this.position = response.data.data));
     },
     getAllData: function() {
-      let apiURL = "http://api:3030/projectmanage/";
+      let apiURL = "http://178.128.80.240:3030/projectmanage/";
       let getID = this.$route.params.projectID;
       let view = "/view";
       axios
@@ -418,7 +418,7 @@ export default {
       });
     },
     saveSelectData: function() {
-      let apiURL = "http://api:3030/m/team/create";
+      let apiURL = "http://178.128.80.240:3030/m/team/create";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }
@@ -457,7 +457,7 @@ export default {
       });
     },
     saveData: function() {
-      let apiURL = "http://api:3030/freetime/emp/";
+      let apiURL = "http://178.128.80.240:3030/freetime/emp/";
       let pojectID = this.$route.params.projectID;
       let positionID = this.ruleForm.position_id;
       this.axios

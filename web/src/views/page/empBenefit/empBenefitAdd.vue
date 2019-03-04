@@ -128,7 +128,7 @@ export default {
       this.$router.push("/emp/Benefit/" + this.$route.params.empID);
     },
     getAllData: function() {
-      let apiURL = "http://api:3030/emp/";
+      let apiURL = "http://178.128.80.240:3030/emp/";
       let getID = this.$route.params.empID;
       let view = "/view";
       axios
@@ -160,7 +160,7 @@ export default {
       });
     },
     saveData: function() {
-      let apiURL = "http://api:3030/benefit/create";
+      let apiURL = "http://178.128.80.240:3030/benefit/create";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }

@@ -155,7 +155,7 @@ export default {
       this.ruleForm.fixcost_note = this.branchData.fixcost_note;
     },
     getAllData: function() {
-      let apiURL = "http://api:3030/fixcost/";
+      let apiURL = "http://178.128.80.240:3030/fixcost/";
       let getID = this.$route.params.CostID;
       let view = "/view";
       axios
@@ -170,7 +170,7 @@ export default {
         );
     },
     saveData: function() {
-      let apiURL = "http://api:3030/fixcost/update";
+      let apiURL = "http://178.128.80.240:3030/fixcost/update";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }

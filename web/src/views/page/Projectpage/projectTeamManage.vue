@@ -229,7 +229,7 @@ export default {
     },
     getData: function() {
       axios
-        .get("http://api:3030/position/datatable", {
+        .get("http://178.128.80.240:3030/position/datatable", {
           headers: { Authorization: `${localStorage.tokenkey}` }
         })
         .then(
@@ -239,7 +239,7 @@ export default {
         );
     },
     getAllData: function() {
-      let apiURL = "http://api:3030/projectmanage/";
+      let apiURL = "http://178.128.80.240:3030/projectmanage/";
       let getID = this.$route.params.projectID;
       let view = "/view";
       axios
@@ -249,7 +249,7 @@ export default {
         .then(response => (this.projectData = response.data.data));
     },
     getTeamData: function() {
-      let apiURL = "http://api:3030/project/team/";
+      let apiURL = "http://178.128.80.240:3030/project/team/";
       let getID = this.$route.params.projectID;
       let view = "/view";
       axios
@@ -265,7 +265,7 @@ export default {
     },
     deleteData: function() {
       this.axios
-        .post("http://api:3030/team/delete", this.selectedData, {
+        .post("http://178.128.80.240:3030/team/delete", this.selectedData, {
           headers: { Authorization: `${localStorage.tokenkey}` }
         })
         .then(response => {
@@ -313,7 +313,7 @@ export default {
       console.log("cleared");
     },
     saveData: function() {
-      let apiURL = "http://api:3030/team/update";
+      let apiURL = "http://178.128.80.240:3030/team/update";
       this.axios
         .post(apiURL, this.ruleForm, {
           headers: { Authorization: `${localStorage.tokenkey}` }

@@ -132,7 +132,7 @@ export default {
   methods: {
     getData: function() {
       axios
-        .get("http://api:3030/projectmanage/datatable", {
+        .get("http://178.128.80.240:3030/projectmanage/datatable", {
           headers: { Authorization: `${localStorage.tokenkey}` }
         })
         .then(
@@ -169,7 +169,7 @@ export default {
     deleteData: function() {
       this.axios
         .post(
-          "http://api:3030/projectmanage/delete",
+          "http://178.128.80.240:3030/projectmanage/delete",
           this.selectedData,
           { headers: { Authorization: `${localStorage.tokenkey}` } }
         )
