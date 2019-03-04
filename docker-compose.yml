@@ -22,7 +22,7 @@ services:
       - 80:80
   api:
     build:
-      context: ./web
+      context: ./api
       dockerfile: Dockerfile
 volumes: 
   db-data:
