@@ -7,7 +7,7 @@ LABEL name="API" \
 RUN apk add --update alpine-sdk python python-dev py-pip build-base
 WORKDIR /app
 COPY ./package*.json ./
-RUN npm install && npm install sails-g
+RUN npm install && npm install sails -g
 COPY ./ ./
 EXPOSE 3030
 CMD [ "sails", "lift", "--prod", "--port", "3030" ]
